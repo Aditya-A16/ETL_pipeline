@@ -1,0 +1,36 @@
+#first query
+
+            SELECT Product,       
+                SUM(month_10 + month_11 + month_12) AS total_sales_last_3_months
+            FROM Product_by_sales
+            GROUP BY Product
+                             
+#second query
+           SELECT
+           product,
+           COALESCE(SUM(month_1), 0) +
+           COALESCE(SUM(month_2), 0) +
+           COALESCE(SUM(month_3), 0) +
+           COALESCE(SUM(month_4), 0) +
+           COALESCE(SUM(month_5), 0) +
+           COALESCE(SUM(month_6), 0) +
+           COALESCE(SUM(month_7), 0) +
+           COALESCE(SUM(month_8), 0) +
+           COALESCE(SUM(month_9), 0) +
+           COALESCE(SUM(month_10), 0) +
+           COALESCE(SUM(month_11), 0) +
+           COALESCE(SUM(month_12), 0) AS total_sales_amount
+           FROM
+             Product_by_sales
+           GROUP BY
+             product
+           ORDER BY
+             total_sales_amount DESC
+           LIMIT 5;
+                      
+              
+#third query
+SELECT Product,  
+       AVG(month_1 + month_2 + month_3 + month_4 + month_5 + month_6 + month_7 + month_8 + month_9 + month_10 + month_11 + month_12) AS monthly_avg_sales
+       FROM Product_by_sales
+       GROUP BY Product	
